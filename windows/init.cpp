@@ -72,6 +72,7 @@ const char *uiInit(uiInitOptions *o)
 		nCmdShow = si.wShowWindow;
 
 	// LONGTERM set DPI awareness
+    SetProcessDPIAware();
 
 	hDefaultIcon = LoadIconW(NULL, IDI_APPLICATION);
 	if (hDefaultIcon == NULL)

@@ -46,8 +46,8 @@ static void uiMultilineEntryMinimumSize(uiWindowsControl *c, int *width, int *he
 	uiWindowsSizing sizing;
 	int x, y;
 
-	x = entryWidth;
-	y = entryHeight;
+	x = getScaledPixel(entryWidth);
+	y = getScaledPixel(entryHeight);
 	uiWindowsGetSizing(e->hwnd, &sizing);
 	uiWindowsSizingDlgUnitsToPixels(&sizing, &x, &y);
 	*width = x;

@@ -458,6 +458,9 @@ uiWindow *uiNewWindow(const char *title, int width, int height, int hasMenubar)
 	WCHAR *wtitle;
 	BOOL hasMenubarBOOL;
 
+	scalePixel(width);
+	scalePixel(height);
+
 	uiWindowsNewControl(uiWindow, w);
 
 	hasMenubarBOOL = FALSE;
