@@ -154,13 +154,25 @@ D2D1_SIZE_F realGetSize(ID2D1RenderTarget *rt)
 }
 
 int getScaledPixel(int pixel) {
-    return scalePixel(pixel);
+    return toScaledPixel(pixel);
 }
 
-int scalePixel(int &pixel) {
+int toScaledPixel(int &pixel) {
 #if (WINVER >= 0x0605)
     int dpi = GetDpiForSystem();
     pixel = MulDiv(pixel, dpi, 96);
 #endif
     return pixel;
+}
+
+int getPixel(int scaledPixel) {
+    return toScaledPixel(scaledPixel);
+}
+
+int toPixel(int &scaledPixel) {
+#if (WINVER >= 0x0605)
+    int dpi = GetDpiForSystem();
+    scaledPixel = MulDiv(scaledPixel, 96, dpi);
+#endif
+    return scaledPixel;
 }

@@ -319,13 +319,16 @@ void uiWindowContentSize(uiWindow *w, int *width, int *height)
 	RECT r;
 
 	uiWindowsEnsureGetClientRect(w->hwnd, &r);
-	*width = r.right - r.left;
-	*height = r.bottom - r.top;
+	*width = getPixel(r.right - r.left);
+	*height = getPixel(r.bottom - r.top);
 }
 
 // TODO should this disallow too small?
 void uiWindowSetContentSize(uiWindow *w, int width, int height)
 {
+    toScaledPixel(width);
+    toScaledPixel(height);
+
 	w->changingSize = TRUE;
 	clientSizeToWindowSize(w->hwnd, &width, &height, w->hasMenubar);
 	if (SetWindowPos(w->hwnd, NULL, 0, 0, width, height, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER) == 0)
@@ -458,8 +461,8 @@ uiWindow *uiNewWindow(const char *title, int width, int height, int hasMenubar)
 	WCHAR *wtitle;
 	BOOL hasMenubarBOOL;
 
-	scalePixel(width);
-	scalePixel(height);
+    toScaledPixel(width);
+    toScaledPixel(height);
 
 	uiWindowsNewControl(uiWindow, w);
 

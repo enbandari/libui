@@ -84,8 +84,8 @@ void unregisterArea(void)
 
 void uiAreaSetSize(uiArea *a, int width, int height)
 {
-	a->scrollWidth = width;
-	a->scrollHeight = height;
+	a->scrollWidth = getScaledPixel(width);
+	a->scrollHeight = getScaledPixel(height);
 	areaUpdateScroll(a);
 }
 
@@ -188,8 +188,8 @@ uiArea *uiNewScrollingArea(uiAreaHandler *ah, int width, int height)
 
 	a->ah = ah;
 	a->scrolling = TRUE;
-	a->scrollWidth = width;
-	a->scrollHeight = height;
+	a->scrollWidth = getScaledPixel(width);
+	a->scrollHeight = getScaledPixel(height);
 	uiprivClickCounterReset(&(a->cc));
 
 	// a->hwnd is assigned in areaWndProc()

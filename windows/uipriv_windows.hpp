@@ -77,8 +77,13 @@ extern void setWindowInsertAfter(HWND hwnd, HWND insertAfter);
 extern HWND getDlgItem(HWND hwnd, int id);
 extern void invalidateRect(HWND hwnd, RECT *r, BOOL erase);
 
+// convert user set pixel to scaled pixel
 extern int getScaledPixel(int pixel);
-extern int scalePixel(int &pixel);
+extern int toScaledPixel(int &pixel);
+
+// convert scaled pixel to user set pixel
+extern int getPixel(int scaledPixel);
+extern int toPixel(int &scaledPixel);
 
 // text.cpp
 extern WCHAR *windowTextAndLen(HWND hwnd, LRESULT *len);
